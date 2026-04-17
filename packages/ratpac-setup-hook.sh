@@ -1,5 +1,5 @@
 addRatshare() {
-    export RATSHARE="${out}/share/ratpac"
+    export RATSHARE="$(dirname "$(dirname "$BASH_SOURCE")")/share/RAT"
 }
 
 addEnvHooks "$hostOffset" addRatshare

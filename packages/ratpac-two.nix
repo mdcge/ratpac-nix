@@ -12,7 +12,18 @@ stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ cmake pkg-config makeWrapper ];
-  buildInputs = [ geant4 root fftw ];
+  buildInputs = [ geant4
+                  geant4.data.G4ENSDFSTATE
+                  geant4.data.G4NDL
+                  geant4.data.G4EMLOW
+                  geant4.data.G4PhotonEvaporation
+                  geant4.data.G4RadioactiveDecay
+                  geant4.data.G4PARTICLEXS
+                  geant4.data.G4RealSurface
+                  geant4.data.G4SAIDDATA
+                  root
+                  fftw
+                ];
 
   setupHook = ./ratpac-setup-hook.sh;
   

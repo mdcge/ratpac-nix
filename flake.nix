@@ -20,6 +20,7 @@
 
         devShells.default = pkgs.mkShell {
           inputsFrom = [ self.packages.${system}.ratpac-two ];
+          packages = [ self.packages.${system}.ratpac-two ];
         };
       });
 }

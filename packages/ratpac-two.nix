@@ -2,13 +2,13 @@
 
 stdenv.mkDerivation {
   pname = "ratpac-two";
-  version = "unstable-2024";  # pin to a specific commit later
+  version = "unstable-2026-04-15";
 
   src = fetchFromGitHub {
     owner = "rat-pac";
     repo = "ratpac-two";
-    rev = "main";  # replace with a specific commit hash
-    hash = "";     # nix will tell you the correct hash on first attempt
+    rev = "a74eed67ad6f611e4fc0faa002aed64c08a48153";
+    hash = "sha256-v3RvGkVeLqX/zGvuCXMtIROK6iUNGHVGRk0fpSj+LPQ=";
   };
 
   nativeBuildInputs = [ cmake ];

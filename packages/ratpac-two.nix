@@ -1,4 +1,4 @@
-{ stdenv, cmake, fetchFromGitHub, geant4, root }:
+{ stdenv, cmake, pkg-config, fetchFromGitHub, geant4, root, fftw }:
 
 stdenv.mkDerivation {
   pname = "ratpac-two";
@@ -11,8 +11,8 @@ stdenv.mkDerivation {
     hash = "sha256-v3RvGkVeLqX/zGvuCXMtIROK6iUNGHVGRk0fpSj+LPQ=";
   };
 
-  nativeBuildInputs = [ cmake ];
-  buildInputs = [ geant4 root ];
+  nativeBuildInputs = [ cmake pkg-config ];
+  buildInputs = [ geant4 root fftw ];
 
   meta = {
     description = "Simulation and analysis package built on GEANT4 and ROOT";

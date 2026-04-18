@@ -1,13 +1,5 @@
 { stdenv, cmake, pkg-config, fetchFromGitHub, geant4, root, fftw }:
 
-let
-  geant4-vis = geant4.override {
-    enableQt = true;
-    enableOpenGLX11 = true;
-  };
-
-in
-
 stdenv.mkDerivation {
   pname = "ratpac-two";
   version = "unstable-2026-04-15";
@@ -20,15 +12,15 @@ stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ cmake pkg-config ];
-  buildInputs = [ geant4-vis
-                  geant4-vis.data.G4ENSDFSTATE
-                  geant4-vis.data.G4NDL
-                  geant4-vis.data.G4EMLOW
-                  geant4-vis.data.G4PhotonEvaporation
-                  geant4-vis.data.G4RadioactiveDecay
-                  geant4-vis.data.G4PARTICLEXS
-                  geant4-vis.data.G4RealSurface
-                  geant4-vis.data.G4SAIDDATA
+  buildInputs = [ geant4
+                  geant4.data.G4ENSDFSTATE
+                  geant4.data.G4NDL
+                  geant4.data.G4EMLOW
+                  geant4.data.G4PhotonEvaporation
+                  geant4.data.G4RadioactiveDecay
+                  geant4.data.G4PARTICLEXS
+                  geant4.data.G4RealSurface
+                  geant4.data.G4SAIDDATA
                   root
                   fftw
                 ];

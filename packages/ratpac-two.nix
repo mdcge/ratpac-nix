@@ -1,4 +1,4 @@
-{ stdenv, cmake, pkg-config, fetchFromGitHub, geant4, root, fftw }:
+{ stdenv, cmake, pkg-config, makeWrapper, fetchFromGitHub, geant4, root, fftw }:
 
 stdenv.mkDerivation {
   pname = "ratpac-two";
@@ -11,7 +11,7 @@ stdenv.mkDerivation {
     hash = "sha256-v3RvGkVeLqX/zGvuCXMtIROK6iUNGHVGRk0fpSj+LPQ=";
   };
 
-  nativeBuildInputs = [ cmake pkg-config ];
+  nativeBuildInputs = [ cmake pkg-config makeWrapper ];
   buildInputs = [ geant4
                   geant4.data.G4ENSDFSTATE
                   geant4.data.G4NDL
@@ -26,6 +26,10 @@ stdenv.mkDerivation {
                 ];
 
   setupHook = ./ratpac-setup-hook.sh;
+
+  postInstall = ''
+    wrapProgram $out/bin/rat --set RATSHARE "$out/share/RAT"
+  '';
   
   meta = {
     description = "Simulation and analysis package built on GEANT4 and ROOT";

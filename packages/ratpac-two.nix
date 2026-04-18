@@ -1,4 +1,4 @@
-{ stdenv, cmake, pkg-config, makeWrapper, fetchFromGitHub, geant4, root, fftw }:
+{ stdenv, cmake, pkg-config, fetchFromGitHub, geant4, root, fftw }:
 
 let
   geant4-vis = geant4.override {
@@ -19,7 +19,7 @@ stdenv.mkDerivation {
     hash = "sha256-v3RvGkVeLqX/zGvuCXMtIROK6iUNGHVGRk0fpSj+LPQ=";
   };
 
-  nativeBuildInputs = [ cmake pkg-config makeWrapper ];
+  nativeBuildInputs = [ cmake pkg-config ];
   buildInputs = [ geant4-vis
                   geant4-vis.data.G4ENSDFSTATE
                   geant4-vis.data.G4NDL

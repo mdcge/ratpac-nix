@@ -17,6 +17,7 @@
         pkgs = import nixpkgs { inherit system; };
       in {
         packages.ratpac-two = pkgs.callPackage ./packages/ratpac-two.nix {};
+        packages.default = self.packages.${system}.ratpac-two;
 
         devShells.default = pkgs.mkShell {
           inputsFrom = [ self.packages.${system}.ratpac-two ];

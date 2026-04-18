@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation {
   pname = "ratpac-two";
-  version = "unstable-2026-04-15";
+  version = "26-04";
 
   src = fetchFromGitHub {
     owner = "rat-pac";

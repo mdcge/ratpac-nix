@@ -34,5 +34,6 @@ stdenv.mkDerivation {
   meta = {
     description = "Simulation and analysis package built on GEANT4 and ROOT";
     homepage = "https://github.com/rat-pac/ratpac-two";
+    mainProgram = "rat";
   };
 }

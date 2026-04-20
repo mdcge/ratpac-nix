@@ -27,6 +27,12 @@ stdenv.mkDerivation {
 
   setupHook = ./ratpac-setup-hook.sh;
 
+  postPatch = ''
+    substituteInPlace src/gen/src/VertexGen_PhotonBomb.cc --replace \
+      'dformat("Using wavelength specrum:\t%d\t%s", fNumPhotons, fWavelengthIndex)' \
+      'dformat("Using wavelength specrum:\t%d\t%s", fNumPhotons, fWavelengthIndex.c_str())'
+  '';
+
   postInstall = ''
     wrapProgram $out/bin/rat \
     --set RATSHARE "$out/share/RAT" \

@@ -1,4 +1,4 @@
-{ stdenv, cmake, pkg-config, makeWrapper, fetchFromGitHub, geant4, root, fftw }:
+{ lib, stdenv, cmake, pkg-config, makeWrapper, fetchFromGitHub, geant4, root, fftw }:
 
 stdenv.mkDerivation {
   pname = "ratpac-two";
@@ -27,15 +27,9 @@ stdenv.mkDerivation {
 
   setupHook = ./ratpac-setup-hook.sh;
 
-  postPatch = ''
-    substituteInPlace src/gen/src/VertexGen_PhotonBomb.cc --replace \
-      'dformat("Using wavelength specrum:\t%d\t%s", fNumPhotons, fWavelengthIndex)' \
-      'dformat("Using wavelength specrum:\t%d\t%s", fNumPhotons, fWavelengthIndex.c_str())'
-
-    substituteInPlace src/daq/src/WaveformAnalysisLucyDDM.cc --replace \
-      'std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()' \
-      'static_cast<long>(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count())'
-  '';
+  patches = lib.optionals stdenv.isDarwin [
+    ../patches/macos-clang-fixes.patch
+  ];
 
   postInstall = ''
     wrapProgram $out/bin/rat \
